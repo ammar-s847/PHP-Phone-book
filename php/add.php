@@ -12,7 +12,7 @@ if (isset($_POST['contact-submit'])) {
         exit();
     } else {
         $insertContact = "INSERT INTO contacts (contact_name, contact_number) VALUES ($name, $number)";
-        if (mysqli_query($insertContact)) {
+        if (mysqli_query($conn, $insertContact)) {
             header('Location: ../index.php?status=success');
             exit();
         } else {
