@@ -7,7 +7,7 @@ if (isset($_POST['contact-submit'])) {
     include_once 'config.php';
     $name = mysqli_real_escape_string($_POST['contact-name']);
     $number = mysqli_real_escape_string($_POST['contact-number']);
-    if empty($name) || empty($number) {
+    if (empty($name) || empty($number) {
         header('Location: ../index.php?status=empty');
         exit();
     } else {
