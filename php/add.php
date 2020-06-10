@@ -1,13 +1,22 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
 if (isset($_POST['contact-submit'])) {
-    include_once 'config.php';
-    $name = mysqli_real_escape_string($_POST['contact-name']);
-    $number = mysqli_real_escape_string($_POST['contact-number']);
-    if (empty($name) || empty($number) {
+    # include_once 'config.php';
+    $DBServer = "localhost";
+    $DBUsername = "root";
+    $DBPassword = "password";
+    $DBName = "phone-book";
+
+    $conn = mysqli_connect($DBServer, $DBUsername, $DBPassword, $DBName);
+
+    if (mysqli_connect_error()) {
+        # die("Connection failed:" . mysqli_connect_error());
+        header('Location: ../index.php?status=sqlerror');
+        exit();
+    }
+    $name = mysqli_real_escape_string($conn, $_POST['contact-name']);
+    $number = mysqli_real_escape_string($conn, $_POST['contact-number']);
+    if (empty($name) || empty($number)) {
         header('Location: ../index.php?status=empty');
         exit();
     } else {
@@ -20,6 +29,9 @@ if (isset($_POST['contact-submit'])) {
             exit();
         }
     }
+} else {
+    header('Location: ../index.php');
+    exit();
 }
 
 ?>
