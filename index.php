@@ -9,7 +9,7 @@
         if (isset($_POST['delete-number'])) {
             $deleteNumberId = $_POST['delete-number'];
             $sql = "DELETE FROM `contacts` WHERE `contacts`.`id`='$deleteNumberId'";
-            if ($query = mysqli_query($conn, $sql)) {
+            if (mysqli_query($conn, $sql)) {
                 header('Location: index.php?delete=success');
                 exit();
             } else {
