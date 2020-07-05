@@ -5,10 +5,6 @@
     </head>
     <?php
         include 'php/config.php';
-        function deleteNumber($id) {
-            $sql = "DELETE FROM `contacts` WHERE `contacts`.`id`='$id'";
-            $query = mysqli_query($conn, $sql);
-        }
 
         if (isset($_POST['delete-number'])) {
             $deleteNumberId = $_POST['delete-number'];
